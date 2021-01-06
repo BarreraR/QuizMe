@@ -1,0 +1,37 @@
+.Answer__Button, Button {
+  border: none;
+  background-color: rgb(231, 77, 77);
+  font-size: 18px;
+  width: 50vw;
+  margin: 3px;
+  padding: 5px 0;
+  border-radius: 10px;
+}
+
+Button {
+  background-color: gray;
+}
+
+
+
+input[type=radio]{
+  display: none;
+}
+
+.Answer {
+  font-size: 18px;
+  margin: auto;
+}
+
+label {
+  background-color: rgb(231, 77, 77);
+  border-radius: 10px;
+  margin: 3px;
+  padding: 5px 0px;
+  display:inline-block;
+  width: 50vw;
+  min-width: 350px;
+}
+.Answer input[type='radio']:checked + label {
+  background-color: darkseagreen;
+}
