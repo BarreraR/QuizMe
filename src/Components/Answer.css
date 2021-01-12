@@ -14,13 +14,18 @@ Button {
 
 
 
-input[type=radio]{
-  display: none;
-}
+  input[type=radio]{
+    /* visibility: hidden; */
+    position: absolute;
+    z-index: -1;
+    top: 10px;
+    left: 10px;
+  }
 
 .Answer {
   font-size: 18px;
   margin: auto;
+  position: relative;
 }
 
 label {

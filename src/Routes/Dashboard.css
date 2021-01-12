@@ -1,0 +1,21 @@
+.Dashboard {
+  background-color: #282c34;
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Start_Quiz {
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+}
+
+.Start_Quiz button {
+  width: auto;
+  flex: 1;
+  
+}

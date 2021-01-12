@@ -1,11 +1,15 @@
 import Answer from './Answer';
+import { useState } from 'react'
 import './Question.css';
 
 export default function Question(props){
+  const [ answer, setAnswer ] = useState(''); 
+
   function goNextQuestion(e){
     e.preventDefault();
     // remove scroll, have one question rendered at a time
-    window.scrollBy(0, window.innerHeight);
+    props.nextQuestion();
+    // submit answer to database
   }
 
   return (
