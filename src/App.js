@@ -1,8 +1,8 @@
 import './App.css';
-// import Question from './Components/Question';
 import Dashboard from './Routes/Dashboard';
 // import Login from './Routes/Login';
 // import Register from './Routes/Register';
+import Admin from './Routes/Admin';
 import Quiz from './Routes/Quiz';
 import QuizCategory from './Routes/QuizCategory';
 import { Route, Switch } from 'react-router-dom';
@@ -20,14 +20,9 @@ function App() {
           {/* <Route path='/register' component={Register}/> */}
           <Route path='/categories' component={QuizCategory}/>
           <Route path='/quiz' component={Quiz}/>
+          <Route path='/admin' component={Admin}/>
         </Switch>
       </main>
-
-      {/* <Question question='Question 1'/>
-      <Question question='Question 2'/>
-      <Question question='Question 3'/>
-      <Question question='Question 4'/>
-      <Question question='Question 5'/> */}
       
     </div>
   );
