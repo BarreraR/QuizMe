@@ -4,6 +4,7 @@ import Dashboard from './Routes/Dashboard';
 // import Login from './Routes/Login';
 // import Register from './Routes/Register';
 import Quiz from './Routes/Quiz';
+import QuizCategory from './Routes/QuizCategory';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path='/dashboard' component={Dashboard}/>
           {/* <Route path='/login' component={Login}/> */}
           {/* <Route path='/register' component={Register}/> */}
+          <Route path='/categories' component={QuizCategory}/>
           <Route path='/quiz' component={Quiz}/>
         </Switch>
       </main>

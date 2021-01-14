@@ -6,7 +6,11 @@ export default function Dashboard(){
   let history = useHistory();
 
   const startQuiz = () =>  {
-    history.push('/quiz')
+    history.push('/quiz');
+  }
+
+  function quizCategory(){
+    history.push('/categories');
   }
 
   return(
@@ -17,7 +21,7 @@ export default function Dashboard(){
       <p>Begin Quizzing yourself.</p>
       <div className='Start_Quiz'>
         <button onClick={() => startQuiz()}>Start Comprehensive Quiz</button>
-        <button>Select Quiz Category</button>
+        <button onClick={() => quizCategory()}>Select Quiz Category</button>
       </div>
       <Results />
     </div>

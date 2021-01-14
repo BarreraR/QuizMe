@@ -1,0 +1,20 @@
+.Categories {
+  /* background-color: #282c34; */
+  min-height: 83.7vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* font-size: calc(10px + 2vmin); */
+  /* color: white; */
+}
+
+.Categories > Input {
+  border: none;
+  background-color: rgb(231, 77, 77);
+  font-size: 18px;
+  width: 50vw;
+  margin: 3px;
+  padding: 5px 0;
+  border-radius: 10px;
+}
