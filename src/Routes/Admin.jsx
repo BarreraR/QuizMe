@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import Create from '../Components/AdminActions/Create';
 
 export default function Admin(){
   const [changeType, setChangeType] = useState('category');
-  const [ action, setAction ] = useState('');
+  const [ action, setAction ] = useState('create');
 
   function change(change){
     setChangeType(change);
@@ -21,17 +22,18 @@ export default function Admin(){
       {changeType === 'category' && <p>Category selected </p>}
       {changeType === 'question' && <p>Question selected </p>}
 
+      <input type='button' value='Create' onClick={()=>changeAction('create')}/>
       <input type='button' value='Update' onClick={()=>changeAction('update')}/>
       <input type='button' value='Delete' onClick={()=>changeAction('delete')}/>
-      <input type='button' value='Create' onClick={()=>changeAction('create')}/>
+      
+      <br/>
+      <br/>
+      <hr/>
 
+      {action === 'create' && <Create type={changeType}/>}
       {action === 'update' && <p>Update selected </p>}
       {action === 'delete' && <p>Delete selected </p>}
-      {action === 'create' && <p>Create selected </p>}
 
-      <form>
-
-      </form>
     </div>
   );
 }
