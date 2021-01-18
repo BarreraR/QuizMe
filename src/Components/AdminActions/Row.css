@@ -1,0 +1,12 @@
+.Row button {
+  width: fit-content;
+  padding: 1px 10px;
+  margin-left: 20px;
+}
+
+.Row {
+  margin:auto;
+  width: fit-content;
+  border-bottom: gray solid 3px;
+  margin-bottom: 2px;
+}
