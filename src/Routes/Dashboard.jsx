@@ -1,5 +1,5 @@
 import './Dashboard.css';
-import Results from '../Components/Results';
+import Results from '../Components/Dashboard/Results';
 import { useHistory } from 'react-router-dom'; 
 
 export default function Dashboard(){

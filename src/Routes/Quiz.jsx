@@ -1,4 +1,4 @@
-import Question from '../Components/Question';
+import Question from '../Components/Quiz/Question';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
