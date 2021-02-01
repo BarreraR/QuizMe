@@ -48,7 +48,7 @@ const ApiService = {
       )
   },
 
-  postAnswer({ answered }) {
+  postAnswer(answered) {
     return fetch(`${config.API_ENDPOINT}/quiz`, {
       method: 'POST',
       headers: {
