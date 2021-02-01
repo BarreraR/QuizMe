@@ -1,4 +1,18 @@
+ul {
+  padding: 0;
+  display: flex;
+  min-width: 100vw;
+}
+
 .Nav_Button {
+  flex: 1;
   text-decoration: none;
   margin: 0 5px;
+  color: white;
+}
+
+.Nav_Button:active{
+  /* color: rgb(255, 0, 200); */
+  color: #61dafb;
+
 }
