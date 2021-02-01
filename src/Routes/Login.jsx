@@ -26,6 +26,7 @@ export default function LoginMain(props) {
             pathname: '/dashboard'
           }
         );
+        props.handleLogin();
       })
       .catch((res) => {
         username.value = "";
