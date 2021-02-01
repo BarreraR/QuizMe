@@ -14,6 +14,7 @@ import ApiService from './Services/api-service';
 function App() {
   const [ hasToken, setHasToken ] = useState(false);
   const [ category, setCategory ] = useState([]);
+  const [ quiz, setQuiz ] = useState([]);
 
   function handleLogin(){
     setHasToken(TokenService.hasAuthToken());
@@ -26,9 +27,17 @@ function App() {
       })
   }
 
+  function handleQuiz(){
+    ApiService.getQuiz()
+      .then((res) => {
+        setQuiz(res.quiz)
+      })
+  }
+
   useEffect(() => {
-    handleLogin();
+    handleLogin()
     handleCategory();
+    handleQuiz();
   }, [])
 
   return (
@@ -50,7 +59,9 @@ function App() {
           <Route path='/categories'>
             <QuizCategory category={category}/>
           </Route> 
-          <Route path='/quiz' component={Quiz}/>
+          <Route path='/quiz'>
+            <Quiz quiz={quiz}/>  
+          </Route> 
           <Route path='/admin' component={Admin}/>
         </Switch>
       </main>

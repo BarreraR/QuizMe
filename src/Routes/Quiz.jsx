@@ -2,8 +2,9 @@ import Question from '../Components/Quiz/Question';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default function Quiz() {
-  const questions = ['Question 1', 'Question 2', 'Question 3', 'Question 4', 'Question 5'];
+export default function Quiz(props) {
+  // const questions = ['Question 1', 'Question 2', 'Question 3', 'Question 4', 'Question 5'];
+  const questions = props.quiz.map(q => q.question);
   
   const [question, setQuestion] = useState(0);
   const history = useHistory();
@@ -17,6 +18,7 @@ export default function Quiz() {
 
   return (
     <div className='Quiz'>
+      {console.log(props.quiz)}
       <Question question={questions[question]} nextQuestion={() => setNextQuestion()}/>
       
     </div>
