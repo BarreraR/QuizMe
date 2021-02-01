@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-// import config from "../config";
-// import TokenService from "../services/token-service";
+import AuthService from "../Services/auth-api-service";
+import TokenService from "../Services/token-service";
 
 export default function LoginMain(props) {
   const history = useHistory();
@@ -16,35 +16,23 @@ export default function LoginMain(props) {
 
     const user = { username: username.value, password: password.value };
 
-    // fetch(`${config.API_ENDPOINT}/auth/login`, {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(user),
-    // })
-    //   .then((res) => {
-    //     if(!res.ok) 
-    //       return res.json().then((e) => Promise.reject(e)); 
-    //     else 
-    //       return res.json();
-    //   })
-    //   .then((res) => {
-    //     username.value = "";
-    //     password.value = "";
-    //     TokenService.saveAuthToken(res.authToken);
-    //     props.loginUser();
-    //     history.push(
-    //       {
-    //         pathname: 'home'
-    //       }
-    //     );
-    //   })
-    //   .catch((res) => {
-    //     username.value = "";
-    //     password.value = "";
-    //     setError(res.error);
-    //   });
+    AuthService.postLogin(user)
+      .then((res) => {
+        username.value = "";
+        password.value = "";
+        TokenService.saveAuthToken(res.authToken);
+        history.push(
+          {
+            pathname: '/dashboard'
+          }
+        );
+      })
+      .catch((res) => {
+        username.value = "";
+        password.value = "";
+        setError(res.error);
+      });
+
   }
 
   return (
