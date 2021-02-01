@@ -9,20 +9,31 @@ import QuizCategory from './Routes/QuizCategory';
 import Nav from './Components/Navigation/Nav';
 import { Route, Switch, Link } from 'react-router-dom';
 import TokenService from './Services/token-service';
+import ApiService from './Services/api-service';
 
 function App() {
   const [ hasToken, setHasToken ] = useState(false);
+  const [ category, setCategory ] = useState([]);
 
   function handleLogin(){
     setHasToken(TokenService.hasAuthToken());
   }
 
+  function handleCategory(){
+    ApiService.getCategories()
+      .then((res) => {
+        setCategory(res.categories)
+      })
+  }
+
   useEffect(() => {
     handleLogin();
-  })
+    handleCategory();
+  }, [])
 
   return (
     <div className="App">
+      {console.log(category)}
       <header className="App-header">
         <Link to={hasToken?'/dashboard':'/'} className='Header_Link'>
           <h1>QuizMe</h1>
@@ -36,7 +47,9 @@ function App() {
             <Login handleLogin={()=>handleLogin()}/>
           </Route>
           <Route path='/register' component={Register}/>
-          <Route path='/categories' component={QuizCategory}/>
+          <Route path='/categories'>
+            <QuizCategory category={category}/>
+          </Route> 
           <Route path='/quiz' component={Quiz}/>
           <Route path='/admin' component={Admin}/>
         </Switch>
