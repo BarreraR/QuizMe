@@ -15,14 +15,17 @@ export default function Nav(props){
           <NavLink to='/dashboard' className='Nav_Button'>
             Home
           </NavLink>      
-          <NavLink to='/admin' className='Nav_Button'>
-            Admin 
-          </NavLink>
+          {TokenService.parseAuthToken().admin &&
+            <NavLink to='/admin' className='Nav_Button'>
+              Admin 
+            </NavLink>
+          }
           <NavLink to='/' className='Nav_Button' onClick={()=>handleSignOut()}>
             Sign Out
           </NavLink>
         </>
       }
+
       {!TokenService.hasAuthToken() && 
         <>
           <NavLink to='/login' className='Nav_Button'>
