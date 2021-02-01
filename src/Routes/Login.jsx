@@ -33,18 +33,18 @@ export default function LoginMain(props) {
         password.value = "";
         setError(res.error);
       });
-
   }
 
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)} className="Login_Form">
-        <h2>Welcome</h2>
-        <p>Please login to continue</p>
 
         <div role='alert'>
           {errorMessage && <p className='red'>{errorMessage}</p>}
         </div>
+
+        <h2>Welcome</h2>
+        <p>Please login to continue</p>
 
         <label htmlFor="username">Username </label>
         <input id="username" type="text" placeholder="User1" />

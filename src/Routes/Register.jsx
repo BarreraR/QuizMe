@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import config from '../config';
+import AuthService from "../Services/auth-api-service";
+import TokenService from "../Services/token-service";
 
 export default function RegisterMain() {
   const history = useHistory();
@@ -23,33 +24,32 @@ export default function RegisterMain() {
       return;
     }
 
-    const { username, password } = e.target;
+    const { username, password, conf_password } = e.target;
     const user = {
       username: username.value,
       password: password.value,
+      admin: 'false',
     };
     setError(null);
 
-    // fetch(`${config.API_ENDPOINT}/users`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify(user),
-    // })
-    //   .then(res => 
-    //     (!res.ok)
-    //       ? res.json().then(e=> Promise.reject(e))
-    //       : res.json()
-    //   )
-    //   .then(() => 
-    //     history.push(
-    //       {
-    //         pathname: 'login'
-    //       }
-    //     )
-    //   )
-    //   .catch(res => setError(res.error));
+    AuthService.postUser(user)
+      .then((res) => {
+        username.value = "";
+        password.value = "";
+        conf_password.value = "";
+        TokenService.saveAuthToken(res.authToken);
+        history.push(
+          {
+            pathname: '/login'
+          }
+        );
+      })
+      .catch((res) => {
+        username.value = "";
+        password.value = "";
+        conf_password.value = "";
+        setError(res.error);
+      });
   }
   
   return (
