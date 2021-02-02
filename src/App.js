@@ -50,19 +50,22 @@ function App() {
         <Nav handleLogin={()=>handleLogin()}/>
       </header>
       <main className='Main'>
-        <Switch>
-          <Route path='/dashboard' component={Dashboard}/>
+        <Switch>          
           <Route path='/login'>
             <Login handleLogin={()=>handleLogin()}/>
           </Route>
           <Route path='/register' component={Register}/>
-          <Route path='/categories'>
-            <QuizCategory category={category}/>
+
+          <Route path='/dashboard' component={Dashboard}/>
+          <Route path='/admin'>
+            <Admin quiz={quiz} category={category}/> 
           </Route> 
           <Route path='/quiz'>
             <Quiz quiz={quiz}/>  
           </Route> 
-          <Route path='/admin' component={Admin}/>
+          <Route path='/categories'>
+            <QuizCategory category={category}/>
+          </Route> 
         </Switch>
       </main>
       

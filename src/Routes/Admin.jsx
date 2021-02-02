@@ -1,9 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Create from '../Components/AdminActions/Create';
 import Row from '../Components/AdminActions/Row';
-export default function Admin(){
+import ApiService from '../Services/api-service';
+
+
+//TODO
+// ------------------------------------------
+// UPDATE STATE OF MAIN COMPONENT WHEN ADMIN MAKES CHANGES
+// ARRAY STILL THE SAME IN QUIZ
+
+export default function Admin(props){
   const [ changeType, setChangeType ] = useState('category');
   const [ create, setCreate ] = useState(true);
+  const [data, setData] = useState({category: [], quiz: []});
+
+  useEffect(()=>{
+    const { category, quiz } = props
+
+    console.log(category, quiz)
+    setData({category, quiz})
+  }, [props])
 
   function change(change){
     setChangeType(change);
@@ -13,10 +29,46 @@ export default function Admin(){
     setCreate(!create);
   }
 
+  function handleDelete(id){
+    if(changeType === 'category')
+      ApiService.deleteCategory(id)
+        .then((res) => {
+          setData({
+            quiz: data.quiz,
+            category: data.category.filter(c => c.id !== id)
+          })
+        })
+    else
+      console.log('delete question')
+  }
 
-  const qData = changeType === 'category' ?
-    ['router', 'state', 'context', 'hooks'].map(q => <Row text={q}/>) :
-    ['question 1', 'question 2', 'question 3'].map(q => <Row text={q}/>);
+  // function handleEdit(){
+
+  // }
+
+  function handleCreate(newData){
+    if(changeType === 'category') {
+      setData({
+        quiz: data.quiz,
+        category: [ ...data.category, newData.category]
+      })
+      setCreate(!create)
+    }
+    else
+      console.log('delete question')
+  }
+
+  const qData = changeType === 'category' 
+    ? data.category.map(c => 
+      <Row 
+        key={c.id} 
+        text={c.category} 
+        handleDelete={()=>handleDelete(c.id)}/>) 
+    : data.quiz.map(q => 
+      <Row 
+        key={q.id} 
+        text={q.question}
+        handleDelete={()=>handleDelete(q.id)}/>);
 
   return (
     <div className='Admin'>
@@ -28,18 +80,13 @@ export default function Admin(){
       {changeType === 'question' && <p>Question selected </p>}
 
       <input type='button' value={create? `Create new ${changeType}`:'Cancel'} onClick={()=>changeCreate()}/>
-      {/* <input type='button' value='Update' onClick={()=>changeAction('update')}/> */}
-      {/* <input type='button' value='Delete' onClick={()=>changeAction('delete')}/> */}
       
       <br/>
       <br/>
-      {/* <hr/> */}
-
-      {!create && <Create type={changeType}/>}
+      
+      {!create && <Create type={changeType} handleCreate={(data)=>handleCreate(data)}/>}
       {create && qData}
-      {/* {action === 'update' && qData} */}
-      {/* {action === 'delete' && <p>Delete selected </p>} */}
-
+      
     </div>
   );
 }
