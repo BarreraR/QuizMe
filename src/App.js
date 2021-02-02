@@ -34,11 +34,19 @@ function App() {
       })
   }
 
+  function handleUpdate(data){
+    console.log(data.category);
+    setCategory(data.category);
+    setQuiz(data.quiz);
+  }
+
   useEffect(() => {
     handleLogin()
-    handleCategory();
-    handleQuiz();
-  }, [])
+    if(hasToken){
+      handleCategory();
+      handleQuiz();
+    }
+  }, [hasToken])
 
   return (
     <div className="App">
@@ -58,7 +66,7 @@ function App() {
 
           <Route path='/dashboard' component={Dashboard}/>
           <Route path='/admin'>
-            <Admin quiz={quiz} category={category}/> 
+            <Admin quiz={quiz} category={category} update={(data)=>handleUpdate(data)}/> 
           </Route> 
           <Route path='/quiz'>
             <Quiz quiz={quiz}/>  

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import AuthService from "../Services/auth-api-service";
-import TokenService from "../Services/token-service";
+
+// Hint: tokens should be validated on servers to prevent invalid tokens
 
 export default function RegisterMain() {
   const history = useHistory();
@@ -37,7 +38,6 @@ export default function RegisterMain() {
         username.value = "";
         password.value = "";
         conf_password.value = "";
-        TokenService.saveAuthToken(res.authToken);
         history.push(
           {
             pathname: '/login'

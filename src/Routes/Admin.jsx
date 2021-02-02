@@ -3,12 +3,6 @@ import Create from '../Components/AdminActions/Create';
 import Row from '../Components/AdminActions/Row';
 import ApiService from '../Services/api-service';
 
-
-//TODO
-// ------------------------------------------
-// UPDATE STATE OF MAIN COMPONENT WHEN ADMIN MAKES CHANGES
-// ARRAY STILL THE SAME IN QUIZ
-
 export default function Admin(props){
   const [ changeType, setChangeType ] = useState('category');
   const [ create, setCreate ] = useState(true);
@@ -19,7 +13,7 @@ export default function Admin(props){
 
     console.log(category, quiz)
     setData({category, quiz})
-  }, [props])
+  }, [props]); 
 
   function change(change){
     setChangeType(change);
@@ -30,22 +24,31 @@ export default function Admin(props){
   }
 
   function handleDelete(id){
-    if(changeType === 'category')
+    if(changeType === 'category') {
       ApiService.deleteCategory(id)
         .then((res) => {
           setData({
             quiz: data.quiz,
             category: data.category.filter(c => c.id !== id)
-          })
-        })
-    else
+          });
+          props.update({
+            quiz: data.quiz,
+            category: data.category.filter(c => c.id !== id)
+          });
+        });
+      } else {
       ApiService.deleteQuestion(id)
       .then((res) => {
         setData({
           quiz: data.quiz.filter(c => c.id !== id),
           category: data.category
-        })
-    })
+        });
+        props.update({
+          quiz: data.quiz.filter(c => c.id !== id),
+          category: data.category
+        });
+      });
+    }
   }
 
   // function handleEdit(){
@@ -57,16 +60,27 @@ export default function Admin(props){
       setData({
         quiz: data.quiz,
         category: [ ...data.category, newData.category]
-      })
-      setCreate(!create)
+      });
+      
+      setCreate(!create);
+      
+      props.update({
+        quiz: data.quiz,
+        category: [ ...data.category, newData.category]
+      });
     }
     else {
-      console.log(newData)
       setData({
         quiz: [...data.quiz, newData.question],
         category: data.category
-      })
-      setCreate(!create)
+      });
+
+      setCreate(!create);
+      
+      props.update({
+        quiz: [...data.quiz, newData.question],
+        category: data.category
+      });
     }
   }
 
