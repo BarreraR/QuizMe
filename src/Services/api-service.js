@@ -112,7 +112,55 @@ const ApiService = {
           : res.json()
       )
   },
+
+  deleteQuestion(id) {
+    return fetch(`${config.API_ENDPOINT}/admin/question`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({ id }),
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(err => Promise.reject(err))
+          : res.json()
+      )
+  },
   
+  editQuestion(edit) {
+    return fetch(`${config.API_ENDPOINT}/admin/question`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({ edit }),
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(err => Promise.reject(err))
+          : res.json()
+      )
+  },
+
+  createQuestion(data) {
+    return fetch(`${config.API_ENDPOINT}/admin/question`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(err => Promise.reject(err))
+          : res.json()
+      )
+  },
+
 }
 
 export default ApiService

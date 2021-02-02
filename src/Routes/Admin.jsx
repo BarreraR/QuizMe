@@ -39,7 +39,13 @@ export default function Admin(props){
           })
         })
     else
-      console.log('delete question')
+      ApiService.deleteQuestion(id)
+      .then((res) => {
+        setData({
+          quiz: data.quiz.filter(c => c.id !== id),
+          category: data.category
+        })
+    })
   }
 
   // function handleEdit(){
@@ -54,8 +60,14 @@ export default function Admin(props){
       })
       setCreate(!create)
     }
-    else
-      console.log('delete question')
+    else {
+      console.log(newData)
+      setData({
+        quiz: [...data.quiz, newData.question],
+        category: data.category
+      })
+      setCreate(!create)
+    }
   }
 
   const qData = changeType === 'category' 

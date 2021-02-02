@@ -5,14 +5,32 @@ export default function Create(props){
 
   function handleSubmit(e){
     e.preventDefault();
+    const { input_1 } = e.target
     if(type === 'category')
-      ApiService.createCategory(e.target.input_1.value)
+      ApiService.createCategory(input_1.value)
         .then((res) => {
           props.handleCreate(res)
           console.log(res, ' response after post')          
         })
-    else
-      console.log('create question')
+    else {
+      const { answer1, answer2, answer3, answer4, category_id = 1 } = e.target
+
+      const question = {
+        question: input_1.value,
+        answer1: answer1.value,
+        answer2: answer2.value,
+        answer3: answer3.value,
+        answer4: answer4.value,
+        correct: answer1.value,
+        category_id
+      }
+      console.log(question)
+      ApiService.createQuestion(question)
+        .then((res) => {
+          props.handleCreate(res)
+          console.log(res, ' response after post')          
+        })
+    }
   }
 
   return (
@@ -27,22 +45,22 @@ export default function Create(props){
           <br/>
           <label>Create first answer:</label>
           <br/>
-          <input type='text' required/>
+          <input type='text' id='answer1' required/>
 
           <br/>
           <label>Create second answer:</label>
           <br/>
-          <input type='text' required/>
+          <input type='text' id='answer2' required/>
 
           <br/>
           <label>Create third answer:</label>
           <br/>
-          <input type='text' required/>
+          <input type='text' id='answer3' required/>
 
           <br/>
           <label>Create fourth answer:</label>
           <br/>
-          <input type='text' required/>
+          <input type='text' id='answer4' required/>
         </>
       }
 
