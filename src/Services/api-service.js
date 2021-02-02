@@ -161,6 +161,23 @@ const ApiService = {
       )
   },
 
+  getAnswers() {
+    TokenService.parseAuthToken()
+
+    return fetch(`${config.API_ENDPOINT}/quiz/answers`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(err => Promise.reject(err))
+          : res.json()
+      )
+  },
+
 }
 
 export default ApiService

@@ -63,7 +63,9 @@ function App() {
           </Route>
           <Route path='/register' component={Register}/>
 
-          <Route path='/dashboard' component={Dashboard}/>
+          <Route path='/dashboard'>
+            <Dashboard category={category}/>  
+          </Route> 
           <Route path='/admin'>
             <Admin quiz={quiz} category={category} update={(data)=>handleUpdate(data)}/> 
           </Route> 

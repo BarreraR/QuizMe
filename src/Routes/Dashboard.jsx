@@ -2,7 +2,7 @@ import './Dashboard.css';
 import Results from '../Components/Dashboard/Results';
 import { useHistory } from 'react-router-dom'; 
 
-export default function Dashboard(){
+export default function Dashboard(props){
   let history = useHistory();
 
   const startQuiz = () =>  {
@@ -23,7 +23,7 @@ export default function Dashboard(){
         <button onClick={() => startQuiz()}>Start Comprehensive Quiz</button>
         <button onClick={() => quizCategory()}>Select Quiz Category</button>
       </div>
-      <Results />
+      <Results category={props.category}/>
     </div>
   );
 
