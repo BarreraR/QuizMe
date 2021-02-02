@@ -50,7 +50,6 @@ function App() {
 
   return (
     <div className="App">
-      {console.log(category)}
       <header className="App-header">
         <Link to={hasToken?'/dashboard':'/'} className='Header_Link'>
           <h1>QuizMe</h1>

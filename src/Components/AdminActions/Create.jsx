@@ -10,7 +10,6 @@ export default function Create(props){
       ApiService.createCategory(input_1.value)
         .then((res) => {
           props.handleCreate(res)
-          console.log(res, ' response after post')          
         })
     else {
       const { answer1, answer2, answer3, answer4, category_id = 1 } = e.target
@@ -24,11 +23,10 @@ export default function Create(props){
         correct: answer1.value,
         category_id
       }
-      console.log(question)
+
       ApiService.createQuestion(question)
         .then((res) => {
           props.handleCreate(res)
-          console.log(res, ' response after post')          
         })
     }
   }

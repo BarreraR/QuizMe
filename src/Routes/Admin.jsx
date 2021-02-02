@@ -10,8 +10,6 @@ export default function Admin(props){
 
   useEffect(()=>{
     const { category, quiz } = props
-
-    console.log(category, quiz)
     setData({category, quiz})
   }, [props]); 
 
