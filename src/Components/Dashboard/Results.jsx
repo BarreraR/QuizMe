@@ -5,9 +5,9 @@ export default function Results(props){
   const [ answers, setAnswers ] = useState([]);
   const map = {};
 
-  useEffect(()=>{
-    getAnswers()
-  }, []);
+  // useEffect(()=>{
+  //   getAnswers()
+  // }, []);
 
   function getAnswers(){
     ApiService.getAnswers()
@@ -35,8 +35,8 @@ export default function Results(props){
     const id = c.id.toString();
     return <section key={c.id}>
       <h3>Score for {c.category}:</h3>
-      {console.log(map[id])}
-      <p>{map['1'].total}</p>
+      {/* {console.log(map[id])}
+      <p>{map['1'].total}</p> */}
     </section>
   }
   );

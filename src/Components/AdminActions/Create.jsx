@@ -12,7 +12,8 @@ export default function Create(props){
           props.handleCreate(res)
         })
     else {
-      const { answer1, answer2, answer3, answer4, category_id = 1 } = e.target
+      const { answer1, answer2, answer3, answer4, category, correct } = e.target
+      const correctAnswer = [answer1, answer2, answer3, answer4]
 
       const question = {
         question: input_1.value,
@@ -20,8 +21,8 @@ export default function Create(props){
         answer2: answer2.value,
         answer3: answer3.value,
         answer4: answer4.value,
-        correct: answer1.value,
-        category_id
+        correct: correctAnswer[correct.value].value,
+        category_id: category.value,
       }
 
       ApiService.createQuestion(question)
@@ -30,6 +31,8 @@ export default function Create(props){
         })
     }
   }
+
+  const list = props.category.map(c => <option key={c.id} value={c.id}>{c.category}</option>)
 
   return (
     <form onSubmit={(e)=> handleSubmit(e)}>
@@ -59,9 +62,28 @@ export default function Create(props){
           <label>Create fourth answer:</label>
           <br/>
           <input type='text' id='answer4' required/>
+
+          <br/>
+          <label>Select a category:</label>
+          <br/>
+          <select name='category' id='category' required>
+            {list}
+          </select>
+
+          <br/>
+          <label>Select the correct answer:</label>
+          <br/>
+          <select name='correct' id='correct' required>
+            <option value='0'>First Answer</option>
+            <option value='1'>Second Answer</option>
+            <option value='2'>Third Answer</option>
+            <option value='3'>Fourth Answer</option>
+          </select>
+
         </>
       }
 
+      <br/>
       <br/>
       <input type='submit'/>
     </form>

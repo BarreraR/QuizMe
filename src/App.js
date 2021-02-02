@@ -35,7 +35,6 @@ function App() {
   }
 
   function handleUpdate(data){
-    console.log(data.category);
     setCategory(data.category);
     setQuiz(data.quiz);
   }

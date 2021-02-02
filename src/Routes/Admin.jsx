@@ -108,7 +108,7 @@ export default function Admin(props){
       <br/>
       <br/>
       
-      {!create && <Create type={changeType} handleCreate={(data)=>handleCreate(data)}/>}
+      {!create && <Create type={changeType} handleCreate={(data)=>handleCreate(data)} category={data.category}/>}
       {create && qData}
       
     </div>
