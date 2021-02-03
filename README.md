@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Quiz Me App!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[LIVE QuizMe APP](https://quizme.vercel.app).
 
-## Available Scripts
+---
+## Description:
 
-In the project directory, you can run:
+This application stores quiz categories, questions, and user answers to collect data and allow administrators of the web page to create informed decisions about their teaching practices based on student's responses. User registration and login required. Once logged in, token is provided which contains user information and whether a user is an admin. Without the token, an unauthorized request message will be returned.
 
-### `npm start`
+---
+## Stack Used:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+CSS, HTML, ReactJS, JS
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
+## Start
+*Page contains header that allows users to either log in or create a new account. Must use admin account to make changes to the quizes.*
+![Start](./src/images/start.jpg)
 
-### `npm test`
+---
+## Dashboard
+*Page displays progress for each quiz category pertaining to each account. Allows users to take all the quiz questions or focus on a specific category.*
+![Dashboard](./src/images/dashboard.jpg)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
+## Quiz Category
+*Page allows user to select a specific quiz category to answer.*
+![Quiz Category](./src/images/quiz_category.jpg)
 
-### `npm run build`
+---
+## Quiz Page
+*User can answer questions in multiple choice format.*
+![Quiz Page](./src/images/quiz.jpg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
+## Admin Page
+*Admin account displays admin link in header to allow deletion or creation of quiz categories and quiz questions.
+Can toggle between editing questions or answers with the first set of buttons. Click create button to create a new entry, click cancel to return to delete options.*
+![Admin Page](./src/images/admin_page.jpg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+## Non Admin Dashboard
+*Regular account does not display admin link in header.*
+![Non Admin Page](./src/images/non_admin.jpg)
