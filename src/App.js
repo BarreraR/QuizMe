@@ -92,7 +92,9 @@ function App() {
             }
           </Route> 
 
-          <Route exact path='/' component={LandingRoute} />
+          <Route exact path='/'>
+            <LandingRoute handleLogin={()=>handleLogin()}/>  
+          </Route>
           <Route component={NotFoundRoute} />
 
         </Switch>
