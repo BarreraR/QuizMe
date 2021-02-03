@@ -10,6 +10,8 @@ import Nav from './Components/Navigation/Nav';
 import { Route, Switch, Link } from 'react-router-dom';
 import TokenService from './Services/token-service';
 import ApiService from './Services/api-service';
+import NotFoundRoute from './Routes/NotFoundRoute';
+import LandingRoute from './Routes/LandingRoute';
 
 function App() {
   const [ hasToken, setHasToken ] = useState(false);
@@ -57,23 +59,42 @@ function App() {
       </header>
       <main className='Main'>
         <Switch>          
-          <Route path='/login'>
+          <Route exact path='/login'>
             <Login handleLogin={()=>handleLogin()}/>
           </Route>
-          <Route path='/register' component={Register}/>
+          <Route exact path='/register' component={Register}/>
 
-          <Route path='/dashboard'>
-            <Dashboard category={category}/>  
+          <Route exact path='/dashboard'>
+            {TokenService.hasAuthToken() && 
+              <Dashboard category={category}/>  
+            }
+            {!TokenService.hasAuthToken() && <NotFoundRoute /> }    
           </Route> 
-          <Route path='/admin'>
-            <Admin quiz={quiz} category={category} update={(data)=>handleUpdate(data)}/> 
+
+          <Route exact path='/admin'>
+            {TokenService.hasAuthToken() && TokenService.parseAuthToken().admin && 
+              <Admin quiz={quiz} category={category} update={(data)=>handleUpdate(data)}/> 
+            }
+            {(!TokenService.hasAuthToken() || !TokenService.parseAuthToken().admin) && <NotFoundRoute /> }
           </Route> 
+          
           <Route path='/quiz'>
-            <Quiz quiz={quiz}/>  
+            {TokenService.hasAuthToken() && 
+              <Quiz quiz={quiz}/>  
+            }
+            {!TokenService.hasAuthToken() && <NotFoundRoute /> }
           </Route> 
-          <Route path='/categories'>
-            <QuizCategory category={category}/>
+          <Route exact path='/categories'>
+            {
+              TokenService.hasAuthToken() 
+                ? <QuizCategory category={category}/>
+                : <NotFoundRoute />
+            }
           </Route> 
+
+          <Route exact path='/' component={LandingRoute} />
+          <Route component={NotFoundRoute} />
+
         </Switch>
       </main>
       

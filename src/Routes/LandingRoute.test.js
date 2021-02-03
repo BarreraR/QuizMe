@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Create from './Create';
+import LandingRoute from './LandingRoute';
 
-it('renders Create component', () => {
+it('renders LandingRoute component', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Create category={[]}/>, div);
+  ReactDOM.render(<LandingRoute />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
